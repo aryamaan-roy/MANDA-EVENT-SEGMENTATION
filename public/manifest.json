@@ -1,0 +1,8 @@
+{
+  "short_name": "DC Motor Portal",
+  "name": "DC Motor Portal",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

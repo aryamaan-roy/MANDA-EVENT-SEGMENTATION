@@ -1,0 +1,22 @@
+.b {
+  background-color : #a85430;
+  border : none;
+  border-radius: 25px;
+  color: white;
+}
+
+.cardBorder {
+  border: none;
+}
+
+.l{
+  padding-bottom: 10px;
+  background-color : white;
+  border : none;
+  color: #a85430
+}
+
+
+.theme{
+  color: #a85430;
+}
