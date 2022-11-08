@@ -16,6 +16,7 @@ import { Navigate } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { auth } from '../../../firebase'
+import { getAuth, signOut } from "firebase/auth";
 import db from '../../../firebase1'
 function Copyright(props) {
   return (
@@ -33,24 +34,14 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Login() {
-    const navigate = useNavigate()
-    const [Status, setStatus] = React.useState([])
-    useEffect(() => {
-        localStorage.setItem('is_log','false')
-        // db.collection('check_in_use')
-        //       .doc('check_use_var')
-        //       .update({
-        //         if_in_use: "false",
-        // })
-        console.log("satoos1")
-      db.collection('check_in_use')
-      .onSnapshot((snapshot) => {
-        setStatus(
-          snapshot.docs.map((doc) => ({
-            status : doc.data().if_in_use
-          })))})
-
-    },[])
+  const navigate = useNavigate()
+  useEffect(() => {
+    signOut(auth).then(() => {
+      console.log("Signed Out")
+    }).catch((error) => {
+      console.log("Error")
+    });
+  }, [])
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -62,29 +53,15 @@ export default function Login() {
       .signInWithEmailAndPassword(data.get('email'), data.get('password'))
       .then((user) => {
         console.log(user)
-        localStorage.setItem('is_log','true')
+        localStorage.setItem('is_log', 'true')
         console.log(localStorage.getItem('is_log'))
-        if(Status[0]["status"] === "true")
-        {
-            alert("DC Motor experiment is already in use by another user")
-            navigate('/')
-        }
-        else
-        {
-            db.collection('check_in_use')
-            .doc('check_use_var')
-            .update({
-              if_in_use: "true",
+        navigate('/Dashboard')
+        console.log('Log in successful')
       })
-      navigate('/Dashboard')
-      console.log('Log in successful')
-  
-        }
-    })
-    .catch(function (err) {
-      alert('Error to login. No firebase access')
-    })
-};
+      .catch(function (err) {
+        alert('Invalid Credentials')
+      })
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -96,7 +73,7 @@ export default function Login() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80)',
+            backgroundImage: 'url(https://images.unsplash.com/photo-1617791160536-598cf32026fb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80)',
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -160,7 +137,7 @@ export default function Login() {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link onClick={()=>{navigate('/SignUp')}} variant="body2">
+                  <Link onClick={() => { navigate('/SignUp') }} variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>

@@ -21,6 +21,7 @@ import { storage } from '../../firebase1'
 import { uploadBytes, listAll } from 'firebase/storage'
 import db from '../../firebase1'
 import { CForm } from '@coreui/react'
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 // import { forEach } from 'core-js/core/array'
 const Dashboard = (props) => {
   const navigate = useNavigate()
@@ -40,6 +41,19 @@ const Dashboard = (props) => {
   const clearuserHandler = () => {
     console.log('load_button')
   }
+  useEffect(() => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        console.log(user)
+        //alert('Welcome ' + user.email + ' !!!')
+      } else {
+        console.log('No user')
+        navigate('/')
+      }
+    });
+  }, [])
   return (
     <>
         <ResponsiveAppBar />

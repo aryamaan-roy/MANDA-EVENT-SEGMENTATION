@@ -15,7 +15,8 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { Navigate } from 'react-router-dom';
 import db from '../../firebase1'
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom'
-const pages = ['Camera Live Footage'];
+import { getAuth, signOut } from "firebase/auth";
+const pages = [''];
 const settings = ['Logout'];
 
 const ResponsiveAppBar = () => {
@@ -47,7 +48,6 @@ const ResponsiveAppBar = () => {
             variant="h6"
             noWrap
             component="a"
-            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -58,7 +58,7 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            DC Motor Remote Labs
+            Event Segmentation - MANDA LAB
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -114,7 +114,7 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            DC Motor Remote Labs
+            Event Segmentation - MANDA LAB
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -151,14 +151,15 @@ const ResponsiveAppBar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={()=>{
-                  localStorage.setItem('is_log','false')
-                  db.collection('check_in_use')
-            .doc('check_use_var')
-            .update({
-              if_in_use: "false",
-      })
-                  navigate('/')}}>
+                <MenuItem key={setting} onClick={() => {
+                  const auth = getAuth();
+                  signOut(auth).then(() => {
+                    console.log("Signed Out")
+                  }).catch((error) => {
+                    console.log("Error")
+                  });
+                  navigate('/')
+                }}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
