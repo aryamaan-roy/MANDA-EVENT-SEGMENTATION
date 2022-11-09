@@ -92,7 +92,11 @@ export default function SpacingGrid() {
                 onClick={UploadImage}
             >
                 Upload Image
-            </Button></div>
+            </Button>
+            <br></br>
+            <br></br>
+            <img src={image_url} alt="Image" width="300" height="300" />
+            </div>
         </>
     );
 }
