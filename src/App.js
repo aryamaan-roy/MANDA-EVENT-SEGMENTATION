@@ -20,6 +20,7 @@ const Dashboard = React.lazy(() => import('./views/mainComponents/dashboard'))
 const SignUp = React.lazy(() => import('./views/pages/signup/signup'))
 const Grid2 = React.lazy(() => import('./views/mainComponents/grid2'))
 const Label  = React.lazy(() => import('./views/mainComponents/label'))
+const Label2  = React.lazy(() => import('./views/mainComponents/label2'))
 const Images = React.lazy(() => import('./views/mainComponents/images'))
 function App() {
   // different users
@@ -99,6 +100,7 @@ function App() {
             <Route exact path="/Dashboard" element={<Dashboard user={mail} />} />
             <Route exact path="/Grid2" element={<Grid2 user={mail} />} />
             <Route exact path="/LABELS" element={<Label user={mail} />} />
+            <Route exact path="/LABELS2" element={<Label2 user={mail} />} />
             <Route exact path="/IMAGES" element={<Images user={mail} />} />
             {/* <Route exact path="/" element={<Dashboard user={mail} />}></Route> */}
             <Route
