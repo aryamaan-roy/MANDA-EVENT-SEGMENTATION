@@ -18,6 +18,9 @@ const DefaultLayoutComp = React.lazy(() => import('./layout/DefaultLayoutComp'))
 const Login = React.lazy(() => import('./views/pages/login/login'))
 const Dashboard = React.lazy(() => import('./views/mainComponents/dashboard'))
 const SignUp = React.lazy(() => import('./views/pages/signup/signup'))
+const Grid2 = React.lazy(() => import('./views/mainComponents/grid2'))
+const Label  = React.lazy(() => import('./views/mainComponents/label'))
+const Images = React.lazy(() => import('./views/mainComponents/images'))
 function App() {
   // different users
   const [mobileUsers, setMobileUsers] = useState([])
@@ -94,6 +97,9 @@ function App() {
             <Route exact path="/" element={<Login user={mail} />} />
             <Route exact path="/SignUp" element={<SignUp user={mail} />} />
             <Route exact path="/Dashboard" element={<Dashboard user={mail} />} />
+            <Route exact path="/Grid2" element={<Grid2 user={mail} />} />
+            <Route exact path="/LABELS" element={<Label user={mail} />} />
+            <Route exact path="/IMAGES" element={<Images user={mail} />} />
             {/* <Route exact path="/" element={<Dashboard user={mail} />}></Route> */}
             <Route
               path="company/*"

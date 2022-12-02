@@ -16,7 +16,7 @@ import { Navigate } from 'react-router-dom';
 import db from '../../firebase1'
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom'
 import { getAuth, signOut } from "firebase/auth";
-const pages = [''];
+const pages = ['Labels','Images'];
 const settings = ['Logout'];
 
 const ResponsiveAppBar = () => {
@@ -44,23 +44,24 @@ const ResponsiveAppBar = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            Event Segmentation - MANDA LAB
-          </Typography>
-
+          <Button onClick={() => navigate('/Dashboard')} >
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'white',
+                textDecoration: 'none',
+              }}
+            >
+              Event Segmentation - MANDA LAB
+            </Typography>
+          </Button>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -98,6 +99,7 @@ const ResponsiveAppBar = () => {
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+
           <Typography
             variant="h5"
             noWrap
@@ -116,11 +118,12 @@ const ResponsiveAppBar = () => {
           >
             Event Segmentation - MANDA LAB
           </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => navigate(`/${page}`)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}
@@ -167,7 +170,7 @@ const ResponsiveAppBar = () => {
           </Box>
         </Toolbar>
       </Container>
-    </AppBar>
+    </AppBar >
   );
 };
 export default ResponsiveAppBar;

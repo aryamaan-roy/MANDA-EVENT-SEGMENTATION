@@ -20,7 +20,7 @@ import TextField from '@mui/material/TextField';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { UploadFile } from '@mui/icons-material';
 import { useEffect } from 'react';
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
 
 
 export default function SpacingGrid() {
@@ -51,6 +51,7 @@ export default function SpacingGrid() {
 
     const [image_url, setImage] = useState();
     const [image_name, setImage_name] = useState();
+    const [progresspercent, setProgresspercent] = useState(0);
     function Image_choose(e) {
         console.log(e.target.files);
         console.log(e.target.files[0].name);

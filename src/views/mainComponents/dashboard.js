@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import React, { useEffect, useState, createRef, useRef } from 'react'
 import ResponsiveAppBar from './nav.js'
 import SpacingGrid from './grids.js'
+import Grid2 from './grid2.js'
 //MUI
 
 import Modal from '@mui/material/Modal'
@@ -58,7 +59,8 @@ const Dashboard = (props) => {
     <>
         <ResponsiveAppBar />
         <br /><br />
-        <SpacingGrid />
+        {/* <SpacingGrid /> */}
+        <Grid2 />
     </>
   )
 }
