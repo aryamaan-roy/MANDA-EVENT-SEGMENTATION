@@ -1,5 +1,7 @@
 # MANDA LAB - EVENT SEGMENTATION PORTAL
 
+# Note : This is a rough prototype. The actual product is not authorized to be made public
+
 # Accessing the website :
 
 - The code has been deployed on : https://manda-event.netlify.app/#/
